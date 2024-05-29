@@ -2,7 +2,7 @@
 #welcome-container {
   display: flex;
   height: 100vh;
-  background-image: url('../public/principal-background.png');
+  background-image: url('../principal-background.png');
   background-size: contain;
   background-repeat: repeat-x;
   background-position: center;

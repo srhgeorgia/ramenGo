@@ -175,7 +175,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-image: url('../public/second-background.png');
+  background-image: url('../second-background.png');
   background-size: contain;
   position: relative;
   text-align: center; /* Centraliza o texto horizontalmente */
