@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800;900&display=swap');
+
+/************* root variables */
+:root {
+  --black: #000000;
+  --blue: #1820EF;
+  --salmon: #FF4E42;
+  --yellow:#FFC024;
+  --off-white: #FAFAED;
+  --backgroud-image: #730000;
+  --button-background: #c5c5c5;
+  --font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+/************* body */
+body {
+  font-family: var(--font-family);
+  max-width: 100vw;
+  max-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+button{
+  cursor: pointer;
+}
