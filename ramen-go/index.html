@@ -1,13 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/ramen.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RamenGo</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/ramen.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RamenGo</title>
+  <link rel="stylesheet" href="/styles/reset.css" />
+  <link rel="stylesheet" href="/styles/style.css" />
+  <link rel="stylesheet" href="/styles/order.css" />
+  <link rel="stylesheet" href="/styles/home.css" />
+</head>
+
+<body>
+  <h1 id="welcome-header">ramenGO!</h1>
+  <div id="choose-options">
+    <div id="welcome-container">
+      <div id="welcome-top">
+        <div id="background-deliver">
+          <img src="/entregadora.png" alt="deliver" id="img-deliver" />
+        </div>
+        <div id="img-baloons">
+          <img src="/balao-azul.png" alt="cook" id="img-blue-baloon" />
+          <img src="/balao-amarelo.png" alt="cook" id="img-yellow-baloon" />
+        </div>
+        <div id="welcome-simbol">
+          <p id="simbol-text"> <br>ラ<br>l<br>メ<br>ン</p>
+        </div>
+        <div id="welcome-go">
+          <p id="go-text">GO!</p>
+        </div>
+        <div id="welcome-paragraph">
+          <p id="enjoy-text">
+            Enjoy a good ramen in the comfort of your house. Create your own
+            ramen and choose your favorite flavour combination!
+          </p>
+          <button id="order-now" onclick="scrollToChooseContainer()">
+            ORDER NOW!
+              <img src="/arrow.png" alt="">
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="choose-container">
+      <div id="items-container">
+        <div class="items-box">
+          <h1 class="choose-title">First things first: select your favorite broth.</h1>
+          <p class="choose-paragraph">It will give the whole flavor on your ramen soup. </p>
+          <div id="broth-container"></div>
+        </div>
+
+        <div class="items-box">
+          <h1 class="choose-title">It’s time to choose (or not) your meat!</h1>
+          <p class="choose-paragraph"> Some people love, some don’t. We have options for all tastes.</p>
+          <div id="protains-container"></div>
+        </div>
+
+        <button id="place-myorder" onclick="openOrderContainer()">
+          PLACE MY ORDER
+          <img src="/arrow-white.png" alt="">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="success" style="display: none">
+
+    <div id="success-container">
+
+      <div id="sucess-div1">
+      </div>
+
+      <div id="sucess-div2">
+        <img id="img-boyzinho" src="/boyzinho.png" alt="littlemen">
+        <h1 id="succes-simbol">どもありがとうございます</h1>
+        <h2 id="success-header">Your order is being prepared</h2>
+        <p id="success-paragraph">
+          Hold on, when you least expect you will be eating your rámen.
+        </p>
+        <button id="new-order" onclick="newOrderAndRefresh()">PLACE NEW ORDER
+          <img src="/arrow.png" alt="">
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="apis.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>
