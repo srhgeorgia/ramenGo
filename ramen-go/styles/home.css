@@ -116,12 +116,13 @@
   width: 100%;
   color: var(--off-white);
   margin-top: 0.7rem;
-  font-weight: 800;
+  font-weight: 700;
   font-size: 14px;
   line-height: 20.79px;
   letter-spacing: 1.78px;
   padding: 14px;
   border-radius: 20rem;
+  align-items: center;
 }
 
 .button-arrow {

@@ -39,7 +39,7 @@
   margin-top: 2rem;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   height: 17.5rem;
   width: 18.5rem;
@@ -119,6 +119,7 @@
   padding: 15px;
   width: 13rem;
   border-radius: 20rem;
+  align-items: center;
 }
 
 .button-active{
@@ -226,6 +227,7 @@
   padding: 15px;
   width: 15rem;
   border-radius: 20rem;
+  align-items: center;
 }
 
 .header-active{
