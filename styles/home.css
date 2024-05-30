@@ -3,22 +3,18 @@
   display: flex;
   height: 100vh;
   background-image: url('/public/principal-background.png');
-  background-size: contain;
-  background-repeat: repeat-x;
-  background-position: center;
-  position: relative;
+  background-size: contain; 
 }
 
 #welcome-header {
   position: absolute;
-  font-size: 16px;
+  font-size: 21px;
   font-weight: 900;
-  line-height: 15px;
   color: var(--yellow);
-  top: 30px; 
-  left: 30px; 
-  z-index: 1; 
-  letter-spacing: 2px; 
+  top: 32px;
+  left: 44px;
+  z-index: 1;
+  letter-spacing: 2px;
 }
 
 #welcome-top{
@@ -32,16 +28,20 @@
 
 /*************  imgs on home */
 #background-deliver {
-  width: 32rem; 
-  height: 31rem; 
+  width: 35rem; 
+  height: 34.5rem; 
   border-radius: 50%; 
   background-color: var(--backgroud-image); 
   position: relative; 
 }
 
+#img-baloons{
+  position: relative; 
+}
+
 #img-deliver {
   left: 0;
-  height: 37.8rem; 
+  height: 40.8rem; 
   object-fit: cover; 
   position: absolute;
   bottom: -3.2rem;
@@ -50,43 +50,33 @@
 
 #img-blue-baloon{
   position: absolute;
-  width: 116px;
   height: 129px;
-  top: 4rem;
-  left: 28rem;
+  right: 460px;
+  bottom: 168px;
 }
 
 #img-yellow-baloon{
   position: absolute;
-  width: 90px;
-  height: 220px;
-  top: 17rem;
-  right: 29.5rem;
+  height: 226px;
+  right: -3rem;
+  bottom: -9rem;
 }
 
 #welcome-go{
-  position: absolute;
-  width: 308px;
-  height: 100px;
-  top: 12rem;
-  left: 22.6rem;
+  position: relative; 
 }
 
 #welcome-simbol{
   display: flex;
   flex-direction: column;
   text-align: center;
-  position: absolute;
-  top: 7rem;
-  left: 20rem;
+  position: relative;
 }
 
 #welcome-paragraph{
-  position: absolute;
-  width: 12.5rem;
-  height: 100px;
-  top: 24rem;
-  left: 20rem;
+  position: relative;
+  right: 770px;
+  top: 37px;
 }
 
 /************* texts on home */
@@ -94,35 +84,45 @@
   color: var(--off-white);
   font-weight: 900;
   font-size: 160px;
+  position: absolute; 
+  right: 24rem;
+  bottom: -82px;
 }
 
 #simbol-text{
   color: var(--yellow);
   font-weight: 900;
-  font-size: 33px;
+  font-size: 36px;
+  position: absolute;
+  right: 45rem;
+  bottom: -1rem;
 }
 
 #enjoy-text{
   color: var(--off-white);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 24px;
+  position: absolute;
+  width: 14rem;
 }
 
 #order-now{
   display: flex;
   justify-content: space-between;
   background-color: var(--blue);
-  width: 100%;
+  width: 14rem;
   color: var(--off-white);
   margin-top: 0.7rem;
   font-weight: 700;
   font-size: 14px;
   line-height: 20.79px;
   letter-spacing: 1.78px;
-  padding: 14px;
+  padding: 18px;
   border-radius: 20rem;
   align-items: center;
+  position: absolute;
+  top: 140px;
 }
 
 .button-arrow {
