@@ -334,3 +334,9 @@
     top: 68px;
   }
 }
+
+@media (min-width: 400px) and (max-width: 1105px) {
+  #success-container {
+    grid-template-columns: auto;
+  }
+}
