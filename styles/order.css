@@ -129,10 +129,12 @@
 /************* container order  */
 
 #success-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: var(--salmon);
   font-weight: 900;
   font-size: 32px;
-  line-height: 47.52px;
   text-align: center;
   margin-bottom: 0.5rem;
 }
@@ -162,9 +164,9 @@
   position: relative;
 }
 
-#img-boyzinho {
-  width: 60.92px;
-  height: 54.38px;
+#img-boyzinho {    
+  width: 69.92px;
+  height: 66.38px;
   margin-bottom: 0.5rem;
 }
 
@@ -231,20 +233,43 @@
   color: var(--salmon) !important;
 }
 
+#carousel-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 5px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.indicator.active {
+  background-color: blue;
+  transform: scale(1.5);
+}
+
+
 @media (min-width: 366px) and (max-width: 768px) {
   #broth-container,
   #protains-container {
-    display: flex;
     gap: 1rem;
-    justify-content: flex-start;
     align-items: center;
-    overflow-x: auto;
     padding: 1rem;
+  }
+  
+  #carroussel{
+    overflow: visible;
     touch-action: pan-y;
   }
 
   .items-box {
     padding: 1rem;
+    overflow: scroll;
   }
 
   .choose-title {
@@ -256,12 +281,18 @@
   }
 
   #sucess-div2 {
-    padding: 1rem;
+    padding: 50px 11px 68px 11px;
   }
+
+  #success-header {
+    font-size: 25px;
+    margin-bottom: 0.5rem;
+}
 
   #img-boyzinho {
     width: 74.92px;
     height: 71.38px;
+    margin-bottom: 1rem;
   }
 
   #new-order{
@@ -269,7 +300,7 @@
   }
 
   .order-image{
-    bottom: 9rem;
+    bottom: 10rem;
   }
 
   .order-title {
@@ -282,5 +313,13 @@
     width: 17rem;
     font-size: 25px;
   }
+
+  #succes-simbol {
+    font-size: 22px;
+  }
+
+  #success-paragraph {
+    font-size: 17px;
+}
 
 }
