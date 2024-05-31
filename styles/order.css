@@ -1,12 +1,12 @@
 /************* choose options */
 
-#choose-container{
+#choose-container {
   display: flex;
   background-color: var(--off-white);
   position: relative;
 }
 
-#items-container{
+#items-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -15,24 +15,23 @@
   height: 100%;
 }
 
-.items-box{
+.items-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  max-width: 100%;
 }
 
 #broth-container,
-#protains-container{
+#protains-container {
   display: flex;
-  gap: 1rem;
+  gap: 3rem;
   justify-content: space-evenly;
   align-items: center;
-  width: 100%;
 }
 
-.item{
+.item {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,7 +44,7 @@
   width: 18.5rem;
 }
 
-.item-title{
+.item-title {
   font-weight: 900;
   font-size: 20px;
   line-height: 24px;
@@ -54,11 +53,11 @@
   margin: 1rem 0 0.5rem 0;
 }
 
-.item-image{
+.item-image {
   padding-top: 2rem;
 }
 
-.item-description{
+.item-description {
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
@@ -67,7 +66,7 @@
   margin: 0 1rem 1rem 1rem;
 }
 
-.item-price{
+.item-price {
   font-weight: 900;
   font-size: 20px;
   line-height: 20px;
@@ -77,21 +76,21 @@
   padding-bottom: 1rem;
 }
 
-.item-active{
+.item-active {
   background-color: var(--blue);
   transition: 0.5s;
 }
 
 .title-active,
-.description-active{
+.description-active {
   color: var(--off-white) !important;
 }
 
-.price-active{
+.price-active {
   color: var(--yellow) !important;
 }
 
-.choose-title{
+.choose-title {
   margin-top: 5rem;
   font-weight: 900;
   font-size: 32px;
@@ -99,15 +98,15 @@
   text-align: center;
 }
 
-.choose-paragraph{
+.choose-paragraph {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
 }
 
-#place-myorder{
-  display: flex;  
+#place-myorder {
+  display: flex;
   justify-content: space-between;
   background-color: var(--button-background);
   color: var(--off-white);
@@ -122,14 +121,14 @@
   align-items: center;
 }
 
-.button-active{
+.button-active {
   background-color: var(--blue) !important;
   color: var(--off-white) !important;
 }
 
 /************* container order  */
 
-#success-header{
+#success-header {
   color: var(--salmon);
   font-weight: 900;
   font-size: 32px;
@@ -138,7 +137,7 @@
   margin-bottom: 0.5rem;
 }
 
-#success-paragraph{
+#success-paragraph {
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
@@ -146,7 +145,7 @@
   color: var(--black);
 }
 
-#succes-simbol{
+#succes-simbol {
   color: var(--yellow);
   font-weight: 900;
   font-size: 20px;
@@ -155,8 +154,7 @@
   margin-bottom: 0.5rem;
 }
 
-#success-container{
-  width: 100vw;
+#success-container {
   height: 100vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -164,7 +162,7 @@
   position: relative;
 }
 
-#img-boyzinho{
+#img-boyzinho {
   width: 60.92px;
   height: 54.38px;
   margin-bottom: 0.5rem;
@@ -185,18 +183,17 @@
   position: absolute;
 }
 
-.order-description{
+.order-description {
   position: absolute;
   font-weight: 900;
   font-size: 32px;
-  line-height: 47.52px;
   text-align: center;
   color: var(--yellow);
   margin: 1rem;
   top: 76%;
 }
 
-.order-title{
+.order-title {
   position: absolute;
   font-weight: 900;
   font-size: 20px;
@@ -207,14 +204,14 @@
   top: 70%;
 }
 
-#sucess-div2{
+#sucess-div2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#new-order{
+#new-order {
   display: flex;
   justify-content: space-between;
   background-color: var(--blue);
@@ -230,6 +227,60 @@
   align-items: center;
 }
 
-.header-active{
+.header-active {
   color: var(--salmon) !important;
+}
+
+@media (min-width: 366px) and (max-width: 768px) {
+  #broth-container,
+  #protains-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    padding: 1rem;
+    touch-action: pan-y;
+  }
+
+  .items-box {
+    padding: 1rem;
+  }
+
+  .choose-title {
+    margin-top: 1rem;
+  }
+
+  #sucess-div1 {
+    height: 100vh;
+  }
+
+  #sucess-div2 {
+    padding: 1rem;
+  }
+
+  #img-boyzinho {
+    width: 74.92px;
+    height: 71.38px;
+  }
+
+  #new-order{
+    padding: 20px;
+  }
+
+  .order-image{
+    bottom: 9rem;
+  }
+
+  .order-title {
+    font-weight: 700;
+    top: 65%;
+  }
+
+  .order-description {
+    top: 74%;
+    width: 17rem;
+    font-size: 25px;
+  }
+
 }

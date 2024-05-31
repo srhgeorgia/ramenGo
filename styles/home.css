@@ -23,13 +23,12 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  position: relative;
 }
 
 /*************  imgs on home */
 #background-deliver {
-  width: 35rem; 
-  height: 34.5rem; 
+  width: 34rem;
+  height: 33.5rem;
   border-radius: 50%; 
   background-color: var(--backgroud-image); 
   position: relative; 
@@ -40,26 +39,25 @@
 }
 
 #img-deliver {
-  left: 0;
-  height: 40.8rem; 
-  object-fit: cover; 
+  height: 37.8rem;
+  object-fit: cover;
   position: absolute;
-  bottom: -3.2rem;
+  bottom: -2rem;
   left: -1.1rem;
 }
 
 #img-blue-baloon{
   position: absolute;
-  height: 129px;
-  right: 460px;
-  bottom: 168px;
+  height: 125px;
+  right: 484px;
+  bottom: 438px;
 }
 
 #img-yellow-baloon{
   position: absolute;
   height: 226px;
   right: -3rem;
-  bottom: -9rem;
+  bottom: 7rem;
 }
 
 #welcome-go{
@@ -67,15 +65,13 @@
 }
 
 #welcome-simbol{
-  display: flex;
-  flex-direction: column;
   text-align: center;
   position: relative;
 }
 
 #welcome-paragraph{
   position: relative;
-  right: 770px;
+  right: 749px;
   top: 37px;
 }
 
@@ -100,11 +96,11 @@
 
 #enjoy-text{
   color: var(--off-white);
-  font-weight: 500;
+  font-weight: 400;
   font-size: 18px;
   line-height: 24px;
   position: absolute;
-  width: 14rem;
+  width: 226px;
 }
 
 #order-now{
@@ -122,10 +118,88 @@
   border-radius: 20rem;
   align-items: center;
   position: absolute;
-  top: 140px;
+  top: 127px;
 }
 
 .button-arrow {
   color: var(--yellow);   
 }
 
+@media (min-width: 366px) and (max-width: 768px) {
+
+  #welcome-header{
+    top: 14px;
+    left: 35%;
+  }
+
+  #img-deliver {
+    height: 16.8rem;
+    bottom: -1.2rem;
+    left: -6px;
+  }
+
+  #background-deliver {
+    width: 15rem;
+    height: 14.5rem;
+    bottom: 7rem;
+  }
+
+  #img-blue-baloon {
+    height: 3rem;
+    right: 211px;
+    bottom: 308px;
+  }
+
+  #img-yellow-baloon {
+    height: 96px;
+    right: -1rem;
+    bottom: 10rem;
+  }
+
+  #go-text{
+    font-weight: 900;
+    font-size: 119px;
+    position: absolute;
+    right: 3px;
+    top: 34px;
+  }
+
+  #order-now{
+    display: none;
+  }
+
+  #welcome-paragraph {
+    right: 290px;
+    top: 192px;
+  }
+
+  #enjoy-text {
+    width: 21rem;
+    text-align: center;
+  }
+
+  #session1-welcome{
+    position: relative;
+      bottom: 2rem;
+  }
+  
+  #simbol-text{
+    display: none;
+  }
+
+  #simbol-text-none{
+    display: block !important;
+    color: var(--yellow);
+    font-weight: 900;
+    font-size: 46px;
+    position: absolute;
+    right: 85px;
+    letter-spacing: 6px;
+    bottom: 259px;
+  }
+
+  #welcome-simbol{
+    position: static;
+  }
+
+}
