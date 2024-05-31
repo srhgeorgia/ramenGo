@@ -38,10 +38,10 @@
   margin-top: 2rem;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  border-radius: 11px;
   cursor: pointer;
   height: 17.5rem;
-  width: 18.5rem;
+  width: 18rem;
 }
 
 .item-title {
@@ -94,7 +94,6 @@
   margin-top: 5rem;
   font-weight: 900;
   font-size: 32px;
-  line-height: 47.52px;
   text-align: center;
 }
 
@@ -164,7 +163,7 @@
   position: relative;
 }
 
-#img-boyzinho {    
+#img-boyzinho {
   width: 69.92px;
   height: 66.38px;
   margin-bottom: 0.5rem;
@@ -183,6 +182,7 @@
 
 .order-image {
   position: absolute;
+  bottom: 13rem;
 }
 
 .order-description {
@@ -192,7 +192,7 @@
   text-align: center;
   color: var(--yellow);
   margin: 1rem;
-  top: 76%;
+  top: 70%;
 }
 
 .order-title {
@@ -203,7 +203,7 @@
   text-align: center;
   color: var(--off-white);
   margin: 22px;
-  top: 70%;
+  top: 64%;
 }
 
 #sucess-div2 {
@@ -253,7 +253,6 @@
   transform: scale(1.5);
 }
 
-
 @media (min-width: 366px) and (max-width: 768px) {
   #broth-container,
   #protains-container {
@@ -261,19 +260,24 @@
     align-items: center;
     padding: 1rem;
   }
-  
-  #carroussel{
+
+  #carroussel {
     overflow: visible;
     touch-action: pan-y;
   }
 
+  .item {
+    margin: 0;
+  }
+
   .items-box {
-    padding: 1rem;
     overflow: scroll;
+    align-items: start;
   }
 
   .choose-title {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    font-size: 25px;
   }
 
   #sucess-div1 {
@@ -287,7 +291,7 @@
   #success-header {
     font-size: 25px;
     margin-bottom: 0.5rem;
-}
+  }
 
   #img-boyzinho {
     width: 74.92px;
@@ -295,21 +299,17 @@
     margin-bottom: 1rem;
   }
 
-  #new-order{
+  #new-order {
     padding: 20px;
-  }
-
-  .order-image{
-    bottom: 10rem;
   }
 
   .order-title {
     font-weight: 700;
-    top: 65%;
+    top: 63%;
   }
 
   .order-description {
-    top: 74%;
+    top: 70%;
     width: 17rem;
     font-size: 25px;
   }
@@ -320,6 +320,13 @@
 
   #success-paragraph {
     font-size: 17px;
-}
+  }
 
+  #choose-container {
+    padding: 1rem;
+  }
+
+  .choose-paragraph {
+    margin-top: 1rem;
+  }
 }

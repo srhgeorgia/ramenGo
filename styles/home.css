@@ -3,7 +3,7 @@
   display: flex;
   height: 100vh;
   background-image: url('/public/principal-background.png');
-  background-size: contain; 
+  background-size: contain;
 }
 
 #welcome-header {
@@ -17,7 +17,7 @@
   letter-spacing: 2px;
 }
 
-#welcome-top{
+#welcome-top {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,13 +29,13 @@
 #background-deliver {
   width: 34rem;
   height: 33.5rem;
-  border-radius: 50%; 
-  background-color: var(--backgroud-image); 
-  position: relative; 
+  border-radius: 50%;
+  background-color: var(--backgroud-image);
+  position: relative;
 }
 
-#img-baloons{
-  position: relative; 
+#img-baloons {
+  position: relative;
 }
 
 #img-deliver {
@@ -46,46 +46,46 @@
   left: -1.1rem;
 }
 
-#img-blue-baloon{
+#img-blue-baloon {
   position: absolute;
   height: 125px;
   right: 484px;
   bottom: 438px;
 }
 
-#img-yellow-baloon{
+#img-yellow-baloon {
   position: absolute;
   height: 226px;
   right: -3rem;
   bottom: 7rem;
 }
 
-#welcome-go{
-  position: relative; 
+#welcome-go {
+  position: relative;
 }
 
-#welcome-simbol{
+#welcome-simbol {
   text-align: center;
   position: relative;
 }
 
-#welcome-paragraph{
+#welcome-paragraph {
   position: relative;
   right: 749px;
   top: 37px;
 }
 
 /************* texts on home */
-#go-text{
+#go-text {
   color: var(--off-white);
   font-weight: 900;
   font-size: 160px;
-  position: absolute; 
+  position: absolute;
   right: 24rem;
   bottom: -82px;
 }
 
-#simbol-text{
+#simbol-text {
   color: var(--yellow);
   font-weight: 900;
   font-size: 36px;
@@ -94,7 +94,7 @@
   bottom: -1rem;
 }
 
-#enjoy-text{
+#enjoy-text {
   color: var(--off-white);
   font-weight: 400;
   font-size: 18px;
@@ -103,7 +103,7 @@
   width: 226px;
 }
 
-#order-now{
+#order-now {
   display: flex;
   justify-content: space-between;
   background-color: var(--blue);
@@ -122,12 +122,11 @@
 }
 
 .button-arrow {
-  color: var(--yellow);   
+  color: var(--yellow);
 }
 
 @media (min-width: 366px) and (max-width: 768px) {
-
-  #welcome-header{
+  #welcome-header {
     top: 14px;
     left: 35%;
   }
@@ -156,21 +155,21 @@
     bottom: 10rem;
   }
 
-  #go-text{
+  #go-text {
     font-weight: 900;
-    font-size: 119px;
+    font-size: 116px;
     position: absolute;
-    right: 3px;
-    top: 34px;
+    right: 5px;
+    top: 21px;
   }
 
-  #order-now{
+  #order-now {
     display: none;
   }
 
   #welcome-paragraph {
-    right: 290px;
-    top: 192px;
+    right: 286px;
+    top: 173px;
   }
 
   #enjoy-text {
@@ -178,28 +177,27 @@
     text-align: center;
   }
 
-  #session1-welcome{
+  #session1-welcome {
     position: relative;
-      bottom: 2rem;
+    bottom: 2rem;
   }
-  
-  #simbol-text{
+
+  #simbol-text {
     display: none;
   }
 
-  #simbol-text-none{
+  #simbol-text-none {
     display: block !important;
     color: var(--yellow);
     font-weight: 900;
     font-size: 46px;
     position: absolute;
-    right: 85px;
+    right: 78px;
     letter-spacing: 6px;
-    bottom: 259px;
+    bottom: 278px;
   }
 
-  #welcome-simbol{
+  #welcome-simbol {
     position: static;
   }
-
 }
