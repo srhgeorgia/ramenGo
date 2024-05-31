@@ -1,4 +1,8 @@
 /************* first page on home */
+#welcome-h1 {
+  display: flex;
+}
+
 #welcome-container {
   display: flex;
   height: 100vh;
@@ -11,10 +15,9 @@
   font-size: 21px;
   font-weight: 900;
   color: var(--yellow);
-  top: 32px;
-  left: 44px;
-  z-index: 1;
   letter-spacing: 2px;
+  margin: 28px 36px;
+  z-index: 1;
 }
 
 #welcome-top {
@@ -125,10 +128,17 @@
   color: var(--yellow);
 }
 
-@media (min-width: 366px) and (max-width: 768px) {
+#success {
+  position: relative;
+}
+
+@media (min-width: 366px) and (max-width: 1105px) {
+  #welcome-h1 {
+    justify-content: center;
+  }
+
   #welcome-header {
-    top: 14px;
-    left: 35%;
+    margin: 13px;
   }
 
   #img-deliver {
@@ -157,10 +167,11 @@
 
   #go-text {
     font-weight: 900;
-    font-size: 116px;
+    font-size: 113px;
     position: absolute;
-    right: 5px;
-    top: 21px;
+    right: -6px;
+    top: 16px;
+    letter-spacing: 7px;
   }
 
   #order-now {
@@ -168,36 +179,26 @@
   }
 
   #welcome-paragraph {
-    right: 286px;
-    top: 173px;
+    right: 269px;
+    top: 159px;
   }
 
   #enjoy-text {
-    width: 21rem;
+    width: 19rem;
     text-align: center;
+    font-size: 16px;
   }
 
   #session1-welcome {
     position: relative;
-    bottom: 2rem;
+    bottom: 33px;
   }
 
   #simbol-text {
-    display: none;
-  }
-
-  #simbol-text-none {
-    display: block !important;
-    color: var(--yellow);
-    font-weight: 900;
-    font-size: 46px;
-    position: absolute;
-    right: 78px;
-    letter-spacing: 6px;
-    bottom: 278px;
-  }
-
-  #welcome-simbol {
-    position: static;
+    right: 15px;
+    bottom: -59px;
+    text-wrap: nowrap;
+    font-size: 45px;
+    letter-spacing: 4px;
   }
 }
