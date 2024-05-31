@@ -253,7 +253,7 @@
   transform: scale(1.5);
 }
 
-@media (min-width: 366px) and (max-width: 768px) {
+@media (min-width: 366px) and (max-width: 1105px) {
   #broth-container,
   #protains-container {
     gap: 1rem;
@@ -305,11 +305,11 @@
 
   .order-title {
     font-weight: 700;
-    top: 63%;
+    top: 61%;
   }
 
   .order-description {
-    top: 70%;
+    top: 68%;
     width: 17rem;
     font-size: 25px;
   }
@@ -328,5 +328,9 @@
 
   .choose-paragraph {
     margin-top: 1rem;
+  }
+
+  .order-image {
+    bottom: 13.5rem;
   }
 }
