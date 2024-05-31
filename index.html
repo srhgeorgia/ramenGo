@@ -4,9 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/ramen.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RamenGo</title>
-  <link rel="stylesheet" href="/styles/reset.css" />
   <link rel="stylesheet" href="/styles/style.css" />
   <link rel="stylesheet" href="/styles/order.css" />
   <link rel="stylesheet" href="/styles/home.css" />
@@ -17,15 +16,21 @@
   <div id="choose-options">
     <div id="welcome-container">
       <div id="welcome-top">
-        <div id="background-deliver">
-          <img src="/entregadora.png" alt="deliver" id="img-deliver" />
+
+        <div id="session1-welcome">
+          <div id="background-deliver">
+            <img src="/entregadora.png" alt="deliver" id="img-deliver" />
+          </div>
+          <div id="img-baloons">
+            <img src="/balao-azul.png" alt="cook" id="img-blue-baloon" />
+            <img src="/balao-amarelo.png" alt="cook" id="img-yellow-baloon" />
+          </div>
         </div>
-        <div id="img-baloons">
-          <img src="/balao-azul.png" alt="cook" id="img-blue-baloon" />
-          <img src="/balao-amarelo.png" alt="cook" id="img-yellow-baloon" />
-        </div>
+
+
         <div id="welcome-simbol">
           <p id="simbol-text"> <br>ラ<br>l<br>メ<br>ン </p>
+          <p id="simbol-text-none" style="display: none"> ラーメン </p>
         </div>
         <div id="welcome-go">
           <p id="go-text">GO!</p>
@@ -33,7 +38,7 @@
         <div id="welcome-paragraph">
           <p id="enjoy-text">
             Enjoy a good ramen in the comfort of your house.
-            <br>Create your own ramen and choose your favorite flavour combination!
+            Create your own ramen and choose your favorite flavour combination!
           </p>
           <button id="order-now" onclick="scrollToChooseContainer()">
             ORDER NOW!

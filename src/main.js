@@ -253,3 +253,4 @@ window.displayOrderDetails = displayOrderDetails;
 window.fetchData = fetchData;
 window.fetchOrderDetails = fetchOrderDetails;
 window.itemsContainer = itemsContainer;
+
