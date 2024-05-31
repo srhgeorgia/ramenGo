@@ -93,7 +93,7 @@
   font-weight: 900;
   font-size: 36px;
   position: absolute;
-  right: 45rem;
+  right: 714px;
   bottom: -1rem;
 }
 
@@ -117,7 +117,7 @@
   font-size: 14px;
   line-height: 20.79px;
   letter-spacing: 1.78px;
-  padding: 18px;
+  padding: 17px;
   border-radius: 20rem;
   align-items: center;
   position: absolute;
@@ -191,12 +191,12 @@
 
   #session1-welcome {
     position: relative;
-    bottom: 33px;
+    bottom: 40px;
   }
 
   #simbol-text {
     right: 15px;
-    bottom: -59px;
+    bottom: -52px;
     text-wrap: nowrap;
     font-size: 45px;
     letter-spacing: 4px;

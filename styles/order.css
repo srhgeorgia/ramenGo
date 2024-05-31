@@ -114,7 +114,7 @@
   font-size: 14px;
   line-height: 20.79px;
   letter-spacing: 1.78px;
-  padding: 15px;
+  padding: 17px;
   width: 13rem;
   border-radius: 20rem;
   align-items: center;
@@ -223,7 +223,7 @@
   font-size: 14px;
   line-height: 20.79px;
   letter-spacing: 1.78px;
-  padding: 15px;
+  padding: 17px;
   width: 15rem;
   border-radius: 20rem;
   align-items: center;
@@ -305,11 +305,11 @@
 
   .order-title {
     font-weight: 700;
-    top: 61%;
+    top: 60%;
   }
 
   .order-description {
-    top: 68%;
+    top: 67%;
     width: 17rem;
     font-size: 25px;
   }
@@ -331,6 +331,6 @@
   }
 
   .order-image {
-    bottom: 13.5rem;
+    top: 68px;
   }
 }
