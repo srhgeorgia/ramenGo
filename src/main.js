@@ -1,9 +1,8 @@
-const API_KEY = 'ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf';
+const API_KEY = import.meta.env.VITE_API_KEY;
 let selectedBrothId = null;
 let selectedProteinId = null;
 let selectedBrothDetails = null;
 let selectedProteinDetails = null;
-
 
 // Função para exibir o contêiner de seleção e ocultar o contêiner de sucesso
 export function newOrder() {
@@ -12,17 +11,22 @@ export function newOrder() {
   const items = document.querySelectorAll('.item');
   const placeOrderButton = document.getElementById('place-myorder');
 
-  items.forEach(item => {
+  items.forEach((item) => {
     item.classList.remove('item-active');
     item.querySelector('.item-title').classList.remove('title-active');
-    item.querySelector('.item-description').classList.remove('description-active');
+    item
+      .querySelector('.item-description')
+      .classList.remove('description-active');
     item.querySelector('.item-price').classList.remove('price-active');
 
     // Atualiza a imagem para a versão inativa
     const image = item.querySelector('.item-image');
-    const itemType = item.classList.contains('broth-item') ? 'broth' : 'protein';
+    const itemType = item.classList.contains('broth-item')
+      ? 'broth'
+      : 'protein';
     const itemId = item.dataset.id;
-    const selectedItem = itemType === 'broth' ? selectedBrothDetails : selectedProteinDetails;
+    const selectedItem =
+      itemType === 'broth' ? selectedBrothDetails : selectedProteinDetails;
     if (selectedItem && selectedItem.id === itemId) {
       image.src = selectedItem.imageInactive;
     }
@@ -31,14 +35,51 @@ export function newOrder() {
   placeOrderButton.classList.remove('button-active');
   containerSuccess.style.display = 'none';
   containerChooseOptions.style.display = 'block';
+  location.reload();
 }
 
-export function newOrderAndRefresh() {
-  // Adiciona o código para limpar o estado atual ou executar outras ações necessárias para um novo pedido
-  newOrder();
+// Função para rolar suavemente até o contêiner de seleção
+export function scrollToChooseContainer() {
+  const chooseContainer = document.getElementById('choose-container');
+  chooseContainer.scrollIntoView({ behavior: 'smooth' });
+}
 
-  // Recarrega a página automaticamente
-  location.reload();
+export async function openOrderContainer() {
+  const containerSuccess = document.getElementById('success');
+  const containerChooseOptions = document.getElementById('choose-options');
+
+  if (!selectedBrothId || !selectedProteinId) {
+    alert('Please select both broth and protein to place your order');
+    return;
+  }
+
+  // Busca os detalhes do pedido com base nos IDs selecionados
+  const orderDetails = await fetchOrderDetails();
+
+  containerSuccess.style.display = 'block';
+  containerChooseOptions.style.display = 'none';
+
+  // Exibir os detalhes do pedido na tela de sucesso
+  const successDiv1 = document.getElementById('sucess-div1');
+  successDiv1.innerHTML = '';
+
+  const header = document.getElementById('welcome-header');
+  header.classList.add('header-active');
+
+  const title = document.createElement('h3');
+  title.textContent = 'Your order:';
+  title.className = 'order-title';
+
+  const orderDescription = document.createElement('p');
+  orderDescription.textContent = `${orderDetails.description}`;
+  orderDescription.className = 'order-description';
+
+  const orderImage = document.createElement('img');
+  orderImage.className = 'order-image';
+  orderImage.src = orderDetails.image;
+  orderImage.alt = orderDetails.description;
+
+  successDiv1.append(title, orderDescription, orderImage);
 }
 
 // Função para criar e preencher os contêineres de itens
@@ -50,7 +91,7 @@ export function itemsContainer(containerId, items, type) {
   }
   container.innerHTML = '';
 
-  items.forEach(item => {
+  items.forEach((item, index) => {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'item';
     itemDiv.classList.add(`${type}-item`);
@@ -72,15 +113,19 @@ export function itemsContainer(containerId, items, type) {
     price.textContent = `US: $${item.price}`;
     price.className = 'item-price';
 
+    const indicator = document.createElement('div');
+    indicator.className = 'item-indicator';
+
     itemDiv.addEventListener('click', () => {
       const isSelected = itemDiv.classList.contains('item-active');
-      const otherItemType = type === 'broth' ? 'protein' : 'broth';
 
       // Desmarca todos os itens e remove a classe 'item-active' de todos os itens da mesma categoria
-      document.querySelectorAll(`.${type}-item`).forEach(item => {
+      document.querySelectorAll(`.${type}-item`).forEach((item) => {
         item.classList.remove('item-active');
         item.querySelector('.item-title').classList.remove('title-active');
-        item.querySelector('.item-description').classList.remove('description-active');
+        item
+          .querySelector('.item-description')
+          .classList.remove('description-active');
         item.querySelector('.item-price').classList.remove('price-active');
         item.querySelector('.item-image').classList.remove('image-active');
       });
@@ -132,38 +177,10 @@ export function itemsContainer(containerId, items, type) {
     itemDiv.appendChild(title);
     itemDiv.appendChild(description);
     itemDiv.appendChild(price);
+    itemDiv.appendChild(indicator);
 
     container.appendChild(itemDiv);
   });
-} 
-// Função para rolar suavemente até o contêiner de seleção
-export function scrollToChooseContainer() {
-  const chooseContainer = document.getElementById('choose-container');
-  chooseContainer.scrollIntoView({ behavior: 'smooth' });
-}
-
-// Função para exibir os detalhes do pedido
-export function displayOrderDetails(orderDetails) {
-  const successDiv1 = document.getElementById('sucess-div1');
-  successDiv1.innerHTML = ''; 
-
-  const header = document.getElementById('welcome-header');
-  header.classList.add('header-active');
-
-  const title = document.createElement('h3');
-  title.textContent = 'Your order:';
-  title.className = 'order-title';
-
-  const orderDescription = document.createElement('p');
-  orderDescription.textContent = `${orderDetails.description}`;
-  orderDescription.className = 'order-description';
-
-  const orderImage = document.createElement('img');
-  orderImage.className = 'order-image';
-  orderImage.src = orderDetails.image;
-  orderImage.alt = orderDetails.description;
-
-  successDiv1.append(title, orderDescription, orderImage);
 }
 
 // Função para buscar dados da API e preencher os contêineres de seleção
@@ -174,7 +191,7 @@ export async function fetchData() {
   try {
     const [brothResponse, proteinsResponse] = await Promise.all([
       fetch(brothUrl, { headers: { 'x-api-key': API_KEY } }),
-      fetch(proteinUrl, { headers: { 'x-api-key': API_KEY } })
+      fetch(proteinUrl, { headers: { 'x-api-key': API_KEY } }),
     ]);
 
     const broths = await brothResponse.json();
@@ -182,7 +199,6 @@ export async function fetchData() {
 
     itemsContainer('broth-container', broths, 'broth');
     itemsContainer('protains-container', proteins, 'protein');
-    
   } catch (error) {
     console.error('Error fetching data:', error);
   }
@@ -194,16 +210,16 @@ export async function fetchOrderDetails() {
 
   const data = {
     brothId: selectedBrothId,
-    proteinId: selectedProteinId
+    proteinId: selectedProteinId,
   };
 
   const options = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': API_KEY
+      'x-api-key': API_KEY,
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(data),
   };
 
   try {
@@ -214,43 +230,13 @@ export async function fetchOrderDetails() {
     console.error('Error fetching order details:', error);
   }
 }
-
-export async function openOrderContainer() {
-  const containerSuccess = document.getElementById('success');
-  const containerChooseOptions = document.getElementById('choose-options');
-
-  if (!selectedBrothId || !selectedProteinId) {
-    alert('Please select both broth and protein to place your order');
-    return;
-}
-
-  // Busca os detalhes do pedido com base nos IDs selecionados
-  const orderDetails = await fetchOrderDetails();
-
-  containerSuccess.style.display = 'block';
-  containerChooseOptions.style.display = 'none';
-
-  // Exibir os detalhes do pedido na tela de sucesso
-  displayOrderDetails(orderDetails, selectedBrothDetails, selectedProteinDetails);
-}
-
-// Adiciona um ouvinte de evento para chamar a função fetchData quando o DOM estiver completamente carregado
-document.addEventListener('DOMContentLoaded', () => {
-  fetchData();
-});
-
-
-// Adiciona um ouvinte de evento para chamar a função fetchData quando o DOM estiver completamente carregado
 document.addEventListener('DOMContentLoaded', () => {
   fetchData();
 });
 
 window.newOrder = newOrder;
-window.newOrderAndRefresh = newOrderAndRefresh;
 window.scrollToChooseContainer = scrollToChooseContainer;
 window.openOrderContainer = openOrderContainer;
-window.displayOrderDetails = displayOrderDetails;
 window.fetchData = fetchData;
 window.fetchOrderDetails = fetchOrderDetails;
 window.itemsContainer = itemsContainer;
-
