@@ -91,7 +91,7 @@ export function itemsContainer(containerId, items, type) {
   }
   container.innerHTML = '';
 
-  items.forEach((item, index) => {
+  items.forEach((item) => {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'item';
     itemDiv.classList.add(`${type}-item`);

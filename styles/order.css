@@ -50,24 +50,6 @@
   transition: 0.5s;
 }
 
-.item-indicator {
-  width: 10px;
-  height: 10px;
-  background-color: gray;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -40px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.item-active .item-indicator {
-  background-color: var(--salmon);
-  border-radius: 50px;
-  padding: 6px 17px;
-  transition: 0.3s;
-}
-
 .item-title {
   font-weight: 900;
   font-size: 20px;
@@ -277,7 +259,7 @@
   #protains-container {
     gap: 1rem;
     align-items: center;
-    padding: 1rem 0rem 3rem 0.5rem;
+    padding: 2rem 0rem 5rem 0.5rem;
   }
 
   #carroussel {
@@ -355,6 +337,24 @@
 
   #place-myorder {
     margin: 0;
+  }
+
+  .item-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .item-active .item-indicator {
+    background-color: var(--salmon);
+    border-radius: 50px;
+    padding: 6px 17px;
+    transition: 0.3s;
   }
 }
 
