@@ -42,6 +42,12 @@
   cursor: pointer;
   height: 17.5rem;
   width: 18rem;
+  position: relative;
+}
+
+.item-active {
+  background-color: var(--blue);
+  transition: 0.5s;
 }
 
 .item-title {
@@ -74,11 +80,6 @@
   color: var(--salmon);
   margin: 0 1rem 1rem 1rem;
   padding-bottom: 1rem;
-}
-
-.item-active {
-  background-color: var(--blue);
-  transition: 0.5s;
 }
 
 .title-active,
@@ -258,7 +259,7 @@
   #protains-container {
     gap: 1rem;
     align-items: center;
-    padding: 1rem;
+    padding: 2rem 0rem 5rem 0.5rem;
   }
 
   #carroussel {
@@ -332,6 +333,28 @@
 
   .order-image {
     top: 68px;
+  }
+
+  #place-myorder {
+    margin: 0;
+  }
+
+  .item-indicator {
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .item-active .item-indicator {
+    background-color: var(--salmon);
+    border-radius: 50px;
+    padding: 6px 17px;
+    transition: 0.3s;
   }
 }
 
