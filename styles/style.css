@@ -261,7 +261,7 @@ button {
   line-height: 18px;
   text-align: center;
   color: var(--black);
-  padding: 1rem;
+  padding: 5px 16px 25px 16px;
 }
 
 .carousel_price_proteins,
@@ -328,7 +328,7 @@ button {
   border-radius: 11px;
   cursor: pointer;
   height: 19rem;
-  width: 290px;
+  width: 288px;
   position: relative;
 }
 
@@ -344,7 +344,7 @@ button {
   border-radius: 11px;
   cursor: pointer;
   height: 19rem;
-  width: 290px;
+  width: 288px;
   position: relative;
 }
 
@@ -727,7 +727,7 @@ button {
   }
 
   #place-myorder {
-    margin: 0;
+    margin: 2rem;
   }
 
   .carousel_item_proteins__active,
@@ -742,7 +742,7 @@ button {
     border-radius: 11px;
     cursor: pointer;
     height: 19rem;
-    width: 290px;
+    width: 288px;
     position: relative;
   }
 

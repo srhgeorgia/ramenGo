@@ -60,6 +60,44 @@ export async function fetchOrderDetails() {
   }
 }
 
+export async function openOrderContainer() {
+  const containerSuccess = document.getElementById('success');
+  const containerChooseOptions = document.getElementById('choose-options');
+
+  if (!selectedBrothId || !selectedProteinId) {
+    alert('Please select both broth and protein to place your order');
+    return;
+  }
+
+  // Busca os detalhes do pedido com base nos IDs selecionados
+  const orderDetails = await fetchOrderDetails();
+
+  containerSuccess.style.display = 'block';
+  containerChooseOptions.style.display = 'none';
+
+  // Exibir os detalhes do pedido na tela de sucesso
+  const successDiv1 = document.getElementById('sucess-div1');
+  successDiv1.innerHTML = '';
+
+  const header = document.getElementById('welcome-header');
+  header.classList.add('header-active');
+
+  const title = document.createElement('h3');
+  title.textContent = 'Your order:';
+  title.className = 'order-title';
+
+  const orderDescription = document.createElement('p');
+  orderDescription.textContent = `${orderDetails.description}`;
+  orderDescription.className = 'order-description';
+
+  const orderImage = document.createElement('img');
+  orderImage.className = 'order-image';
+  orderImage.src = orderDetails.image;
+  orderImage.alt = orderDetails.description;
+
+  successDiv1.append(title, orderDescription, orderImage);
+}
+
 export function itemsContainer(containerId, items, type) {
   const container = document.getElementById(containerId);
   if (!container) {
@@ -210,44 +248,6 @@ export function newOrder() {
   location.reload();
 }
 
-export async function openOrderContainer() {
-  const containerSuccess = document.getElementById('success');
-  const containerChooseOptions = document.getElementById('choose-options');
-
-  if (!selectedBrothId || !selectedProteinId) {
-    alert('Please select both broth and protein to place your order');
-    return;
-  }
-
-  // Busca os detalhes do pedido com base nos IDs selecionados
-  const orderDetails = await fetchOrderDetails();
-
-  containerSuccess.style.display = 'block';
-  containerChooseOptions.style.display = 'none';
-
-  // Exibir os detalhes do pedido na tela de sucesso
-  const successDiv1 = document.getElementById('sucess-div1');
-  successDiv1.innerHTML = '';
-
-  const header = document.getElementById('welcome-header');
-  header.classList.add('header-active');
-
-  const title = document.createElement('h3');
-  title.textContent = 'Your order:';
-  title.className = 'order-title';
-
-  const orderDescription = document.createElement('p');
-  orderDescription.textContent = `${orderDetails.description}`;
-  orderDescription.className = 'order-description';
-
-  const orderImage = document.createElement('img');
-  orderImage.className = 'order-image';
-  orderImage.src = orderDetails.image;
-  orderImage.alt = orderDetails.description;
-
-  successDiv1.append(title, orderDescription, orderImage);
-}
-
 export function setupCarousel(type) {
   const dots = document.querySelectorAll(`.carousel_dot_${type}`);
   dots.forEach((dot, index) => {
@@ -299,6 +299,48 @@ export function getItemActive(type) {
   const itemActiveIndex = itemsArray.indexOf(itemActive);
   return itemActiveIndex;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  fetchData('broths');
+  fetchData('proteins');
+
+  // Adiciona os manipuladores de eventos de toque
+  const containerBroths = document.getElementById('broths-container');
+  const containerProteins = document.getElementById('proteins-container');
+
+  containerBroths.addEventListener('touchmove', (event) =>
+    touchMove(event, 'broths'),
+  );
+  containerProteins.addEventListener('touchmove', (event) =>
+    touchMove(event, 'proteins'),
+  );
+});
+
+let touchStartX = 0;
+let containerType = '';
+
+function touchMove(event, type) {
+  const touchEndX = event.touches[0].clientX;
+  const touchDiff = touchStartX - touchEndX;
+  const swipeThreshold = 80; // ajuste conforme necessário
+
+  if (Math.abs(touchDiff) > swipeThreshold) {
+    if (touchDiff > 0) {
+      slideItems(getItemActive(type) + 1, type);
+    } else {
+      slideItems(getItemActive(type) - 1, type);
+    }
+    // Reinicia a posição inicial do toque para o próximo deslize
+    touchStartX = touchEndX;
+  }
+}
+
+// Adiciona manipulador de evento touchstart para capturar o início do toque
+document.addEventListener('touchstart', (event) => {
+  touchStartX = event.touches[0].clientX;
+  containerType =
+    event.target.id === 'broths-container' ? 'broths' : 'proteins';
+});
 
 window.newOrder = newOrder;
 window.scrollToChooseContainer = scrollToChooseContainer;
