@@ -246,12 +246,11 @@ button {
   line-height: 24px;
   text-align: center;
   color: var(--blue);
-  margin: 1rem 0 0.5rem 0;
 }
 
 .carousel_img_proteins,
 .carousel_img_broths {
-  padding-top: 35px;
+  padding: 32px 0px 2px 0px;
 }
 
 .carousel_description_proteins,
@@ -271,6 +270,7 @@ button {
   line-height: 20px;
   text-align: center;
   color: var(--salmon);
+  padding-bottom: 35px;
 }
 
 .carousel_dot_proteins,
@@ -318,7 +318,6 @@ button {
 
 .carousel_item_proteins,
 .carousel_item_broths {
-  width: 13rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -328,13 +327,13 @@ button {
   border-radius: 11px;
   cursor: pointer;
   height: 19rem;
-  width: 288px;
+  width: 275px;
   position: relative;
+  justify-content: space-around;
 }
 
 .carousel_item_proteins__active,
 .carousel_item_broths__active {
-  width: 13rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -344,8 +343,9 @@ button {
   border-radius: 11px;
   cursor: pointer;
   height: 19rem;
-  width: 288px;
+  width: 275px;
   position: relative;
+  justify-content: space-around;
 }
 
 .caption {
@@ -714,10 +714,6 @@ button {
     font-size: 17px;
   }
 
-  #choose-container {
-    padding: 1rem;
-  }
-
   .choose-paragraph {
     margin-top: 1rem;
   }
@@ -732,18 +728,18 @@ button {
 
   .carousel_item_proteins__active,
   .carousel_item_broths__active {
-    width: 13rem;
     display: flex !important;
     flex-direction: column;
     align-items: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 11px;
     cursor: pointer;
     height: 19rem;
-    width: 288px;
+    width: 275px;
     position: relative;
+    justify-content: space-around;
   }
 
   .carousel_item_proteins,
