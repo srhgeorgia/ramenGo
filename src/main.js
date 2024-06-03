@@ -3,6 +3,178 @@ let selectedBrothId = null;
 let selectedProteinId = null;
 let selectedBrothDetails = null;
 let selectedProteinDetails = null;
+let onSlide = false;
+
+// Função para buscar dados da API e preencher os contêineres de seleção
+export async function fetchData(type) {
+  const brothUrl = 'https://api.tech.redventures.com.br/broths';
+  const proteinUrl = 'https://api.tech.redventures.com.br/proteins';
+
+  try {
+    const [brothResponse, proteinsResponse] = await Promise.all([
+      fetch(brothUrl, { headers: { 'x-api-key': API_KEY } }),
+      fetch(proteinUrl, { headers: { 'x-api-key': API_KEY } }),
+    ]);
+
+    const broths = await brothResponse.json();
+    const proteins = await proteinsResponse.json();
+
+    if (type === 'broths') {
+      itemsContainer('broths-container', broths, 'broths');
+    } else if (type === 'proteins') {
+      itemsContainer('proteins-container', proteins, 'proteins');
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  fetchData('broths');
+  fetchData('proteins');
+});
+
+// Função para buscar os detalhes do pedido na API
+export async function fetchOrderDetails() {
+  const orderDetailsUrl = 'https://api.tech.redventures.com.br/order';
+
+  const data = {
+    brothId: selectedBrothId,
+    proteinId: selectedProteinId,
+  };
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': API_KEY,
+    },
+    body: JSON.stringify(data),
+  };
+
+  try {
+    const response = await fetch(orderDetailsUrl, options);
+    const orderDetails = await response.json();
+    return orderDetails;
+  } catch (error) {
+    console.error('Error fetching order details:', error);
+  }
+}
+
+export function itemsContainer(containerId, items, type) {
+  const container = document.getElementById(containerId);
+  if (!container) {
+    console.error(`Container with ID ${containerId} not found`);
+    return;
+  }
+  container.innerHTML = '';
+
+  let activeItem = null;
+
+  items.forEach((item, index) => {
+    const itemDiv = document.createElement('div');
+    itemDiv.className = `carousel_item_${type}`;
+    if (index === 0) {
+      itemDiv.classList.add(`carousel_item_${type}__active`);
+      activeItem = itemDiv;
+    }
+    itemDiv.classList.add(`${type}-item`);
+    itemDiv.dataset.id = item.id;
+
+    const image = document.createElement('img');
+    image.src = item.imageInactive;
+    image.dataset.activeImage = item.imageActive;
+    image.dataset.inactiveImage = item.imageInactive;
+    image.alt = item.name;
+    image.className = `carousel_img_${type}`;
+
+    const title = document.createElement('h3');
+    title.textContent = item.name;
+    title.className = `carousel_title_${type}`;
+
+    const description = document.createElement('p');
+    description.textContent = item.description;
+    description.className = `carousel_description_${type}`;
+
+    const price = document.createElement('p');
+    price.textContent = `US: $${item.price}`;
+    price.className = `carousel_price_${type}`;
+
+    const indicator = document.createElement('div');
+    indicator.className = 'item-indicator';
+
+    itemDiv.addEventListener('click', () => {
+      const isSelected = itemDiv.classList.contains('item-active');
+
+      // Desmarca todos os itens e remove a classe 'item-active' de todos os itens da mesma categoria
+      document.querySelectorAll(`.${type}-item`).forEach((item) => {
+        item.classList.remove('item-active');
+        item
+          .querySelector('.carousel_title_' + type)
+          .classList.remove('title-active');
+        item
+          .querySelector('.carousel_description_' + type)
+          .classList.remove('description-active');
+        item
+          .querySelector('.carousel_price_' + type)
+          .classList.remove('price-active');
+        item.querySelector('.carousel_img_' + type).src = item.querySelector(
+          '.carousel_img_' + type,
+        ).dataset.inactiveImage;
+      });
+
+      // Ativa o item clicado se ele não estiver selecionado
+      if (!isSelected) {
+        itemDiv.classList.add('item-active');
+        title.classList.add('title-active');
+        description.classList.add('description-active');
+        price.classList.add('price-active');
+        image.classList.add('image-active');
+        image.src = image.dataset.activeImage;
+        if (type === 'broths') {
+          selectedBrothId = item.id;
+          selectedBrothDetails = item;
+        } else if (type === 'proteins') {
+          selectedProteinId = item.id;
+          selectedProteinDetails = item;
+        }
+      } else {
+        // Se o item já estiver selecionado, limpa a seleção
+        itemDiv.classList.remove('item-active');
+        title.classList.remove('title-active');
+        description.classList.remove('description-active');
+        price.classList.remove('price-active');
+        image.classList.remove('image-active');
+        image.src = image.dataset.inactiveImage;
+        if (type === 'broths') {
+          selectedBrothId = null;
+          selectedBrothDetails = null;
+        } else if (type === 'proteins') {
+          selectedProteinId = null;
+          selectedProteinDetails = null;
+        }
+      }
+
+      const placeOrderButton = document.getElementById('place-myorder');
+      if (selectedBrothId && selectedProteinId) {
+        placeOrderButton.classList.add('button-active');
+      } else {
+        placeOrderButton.classList.remove('button-active');
+      }
+    });
+
+    itemDiv.appendChild(image);
+    itemDiv.appendChild(title);
+    itemDiv.appendChild(description);
+    itemDiv.appendChild(price);
+
+    container.appendChild(itemDiv);
+  });
+}
+// Função para rolar suavemente até o contêiner de seleção
+export function scrollToChooseContainer() {
+  const chooseContainer = document.getElementById('choose-container');
+  chooseContainer.scrollIntoView({ behavior: 'smooth' });
+}
 
 // Função para exibir o contêiner de seleção e ocultar o contêiner de sucesso
 export function newOrder() {
@@ -36,12 +208,6 @@ export function newOrder() {
   containerSuccess.style.display = 'none';
   containerChooseOptions.style.display = 'block';
   location.reload();
-}
-
-// Função para rolar suavemente até o contêiner de seleção
-export function scrollToChooseContainer() {
-  const chooseContainer = document.getElementById('choose-container');
-  chooseContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
 export async function openOrderContainer() {
@@ -82,157 +248,57 @@ export async function openOrderContainer() {
   successDiv1.append(title, orderDescription, orderImage);
 }
 
-// Função para criar e preencher os contêineres de itens
-export function itemsContainer(containerId, items, type) {
-  const container = document.getElementById(containerId);
-  if (!container) {
-    console.error(`Container with ID ${containerId} not found`);
-    return;
-  }
-  container.innerHTML = '';
-
-  items.forEach((item) => {
-    const itemDiv = document.createElement('div');
-    itemDiv.className = 'item';
-    itemDiv.classList.add(`${type}-item`);
-    itemDiv.dataset.id = item.id;
-
-    const image = document.createElement('img');
-    image.alt = item.name;
-    image.className = 'item-image';
-
-    const title = document.createElement('h3');
-    title.textContent = item.name;
-    title.className = 'item-title';
-
-    const description = document.createElement('p');
-    description.textContent = item.description;
-    description.className = 'item-description';
-
-    const price = document.createElement('p');
-    price.textContent = `US: $${item.price}`;
-    price.className = 'item-price';
-
-    const indicator = document.createElement('div');
-    indicator.className = 'item-indicator';
-
-    itemDiv.addEventListener('click', () => {
-      const isSelected = itemDiv.classList.contains('item-active');
-
-      // Desmarca todos os itens e remove a classe 'item-active' de todos os itens da mesma categoria
-      document.querySelectorAll(`.${type}-item`).forEach((item) => {
-        item.classList.remove('item-active');
-        item.querySelector('.item-title').classList.remove('title-active');
-        item
-          .querySelector('.item-description')
-          .classList.remove('description-active');
-        item.querySelector('.item-price').classList.remove('price-active');
-        item.querySelector('.item-image').classList.remove('image-active');
-      });
-
-      // Ativa o item clicado se ele não estiver selecionado
-      if (!isSelected) {
-        itemDiv.classList.add('item-active');
-        title.classList.add('title-active');
-        description.classList.add('description-active');
-        price.classList.add('price-active');
-        image.classList.add('image-active');
-        image.src = item.imageActive; // Atualiza a imagem para a versão ativa
-        if (type === 'broth') {
-          selectedBrothId = item.id;
-          selectedBrothDetails = item;
-        } else if (type === 'protein') {
-          selectedProteinId = item.id;
-          selectedProteinDetails = item;
-        }
-      } else {
-        // Se o item já estiver selecionado, limpa a seleção
-        itemDiv.classList.remove('item-active');
-        title.classList.remove('title-active');
-        description.classList.remove('description-active');
-        price.classList.remove('price-active');
-        image.classList.remove('image-active');
-        image.src = item.imageInactive; // Reverte para a imagem inativa quando o item é desmarcado
-        if (type === 'broth') {
-          selectedBrothId = null;
-          selectedBrothDetails = null;
-        } else if (type === 'protein') {
-          selectedProteinId = null;
-          selectedProteinDetails = null;
-        }
-      }
-
-      const placeOrderButton = document.getElementById('place-myorder');
-      if (selectedBrothId && selectedProteinId) {
-        placeOrderButton.classList.add('button-active');
-      } else {
-        placeOrderButton.classList.remove('button-active');
-      }
-    });
-
-    // Define a imagem inicial como inativa
-    image.src = item.imageInactive;
-
-    itemDiv.appendChild(image);
-    itemDiv.appendChild(title);
-    itemDiv.appendChild(description);
-    itemDiv.appendChild(price);
-    itemDiv.appendChild(indicator);
-
-    container.appendChild(itemDiv);
+export function setupCarousel(type) {
+  const dots = document.querySelectorAll(`.carousel_dot_${type}`);
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => slideItems(index, type));
   });
 }
 
-// Função para buscar dados da API e preencher os contêineres de seleção
-export async function fetchData() {
-  const brothUrl = 'https://api.tech.redventures.com.br/broths';
-  const proteinUrl = 'https://api.tech.redventures.com.br/proteins';
-
-  try {
-    const [brothResponse, proteinsResponse] = await Promise.all([
-      fetch(brothUrl, { headers: { 'x-api-key': API_KEY } }),
-      fetch(proteinUrl, { headers: { 'x-api-key': API_KEY } }),
-    ]);
-
-    const broths = await brothResponse.json();
-    const proteins = await proteinsResponse.json();
-
-    itemsContainer('broth-container', broths, 'broth');
-    itemsContainer('protains-container', proteins, 'protein');
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-}
-
-// Função para buscar os detalhes do pedido na API
-export async function fetchOrderDetails() {
-  const orderDetailsUrl = 'https://api.tech.redventures.com.br/order';
-
-  const data = {
-    brothId: selectedBrothId,
-    proteinId: selectedProteinId,
-  };
-
-  const options = {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
-    },
-    body: JSON.stringify(data),
-  };
-
-  try {
-    const response = await fetch(orderDetailsUrl, options);
-    const orderDetails = await response.json();
-    return orderDetails;
-  } catch (error) {
-    console.error('Error fetching order details:', error);
-  }
-}
-document.addEventListener('DOMContentLoaded', () => {
-  fetchData();
+window.addEventListener('load', () => {
+  setupCarousel('broths');
+  setupCarousel('proteins');
 });
+
+export function slideItems(toIndex, type) {
+  if (onSlide) return;
+  onSlide = true;
+
+  const itemsArray = Array.from(
+    document.querySelectorAll(`.carousel_item_${type}`),
+  );
+  const itemActive = document.querySelector(`.carousel_item_${type}__active`);
+  let newItemActive = null;
+
+  if (toIndex >= itemsArray.length) {
+    toIndex = 0;
+  } else if (toIndex < 0) {
+    toIndex = itemsArray.length - 1;
+  }
+
+  newItemActive = itemsArray[toIndex];
+  const dotActive = document.querySelector(`.carousel_dot_${type}__active`);
+  dotActive.classList.remove(`carousel_dot_${type}__active`);
+  const dots = document.querySelectorAll(`.carousel_dot_${type}`);
+  dots[toIndex].classList.add(`carousel_dot_${type}__active`);
+
+  newItemActive.classList.add(`carousel_item_${type}__active`);
+  newItemActive.classList.remove(`carousel_item_${type}__hidden`);
+
+  itemActive.classList.remove(`carousel_item_${type}__active`);
+  itemActive.classList.add(`carousel_item_${type}__hidden`);
+
+  onSlide = false;
+}
+
+export function getItemActive(type) {
+  const itemActive = document.querySelector(`.carousel_item_${type}__active`);
+  const itemsArray = Array.from(
+    document.querySelectorAll(`.carousel_item_${type}`),
+  );
+  const itemActiveIndex = itemsArray.indexOf(itemActive);
+  return itemActiveIndex;
+}
 
 window.newOrder = newOrder;
 window.scrollToChooseContainer = scrollToChooseContainer;
@@ -240,3 +306,6 @@ window.openOrderContainer = openOrderContainer;
 window.fetchData = fetchData;
 window.fetchOrderDetails = fetchOrderDetails;
 window.itemsContainer = itemsContainer;
+window.setupCarousel = setupCarousel;
+window.slideItems = slideItems;
+window.getItemActive = getItemActive;
